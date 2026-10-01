@@ -103,6 +103,80 @@ export const SVG_PRESETS: SvgPreset[] = [
 </svg>`,
   },
   {
+    id: 'cyber-monday-hud',
+    name: 'Cyber Monday HUD Motion Graphic (4K/60fps)',
+    description: 'High-tech Cyber Monday promotional HUD with rotating reticles, glitch typography, and animated neon laser badges.',
+    category: 'hud',
+    recommendedDuration: 6,
+    recommendedFps: 60,
+    svgCode: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#04020a" />
+      <stop offset="50%" stop-color="#0a051d" />
+      <stop offset="100%" stop-color="#020108" />
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff0055" />
+      <stop offset="100%" stop-color="#7928ca" />
+    </linearGradient>
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur1" />
+      <feGaussianBlur stdDeviation="25" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes rotateClockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes rotateCounter { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+      @keyframes glitchPulse {
+        0%, 100% { filter: drop-shadow(0 0 10px #00f3ff) drop-shadow(0 0 25px #00f3ff); transform: translate(0, 0); }
+        25% { transform: translate(-3px, 1px); }
+        50% { filter: drop-shadow(0 0 18px #ff0055) drop-shadow(0 0 40px #ff0055); transform: translate(3px, -2px); }
+        75% { transform: translate(-2px, -1px); }
+      }
+      @keyframes floatBadge { 0% { transform: translateY(0px); } 100% { transform: translateY(-14px); } }
+      @keyframes radarSweep { 0% { transform: translateY(-100px); opacity: 0; } 50% { opacity: 0.7; } 100% { transform: translateY(1180px); opacity: 0; } }
+      @keyframes glitchLineAnim { 0% { transform: scaleX(0.2) translateX(-200px); opacity: 0.2; } 50% { transform: scaleX(1) translateX(0px); opacity: 0.9; } 100% { transform: scaleX(0.3) translateX(200px); opacity: 0.2; } }
+      .hud-ring-1 { transform-origin: 960px 540px; animation: rotateClockwise 12s linear infinite; }
+      .hud-ring-2 { transform-origin: 960px 540px; animation: rotateCounter 8s linear infinite; }
+      .main-title { font-family: 'Montserrat', 'Arial Black', sans-serif; font-size: 110px; font-weight: 900; fill: #ffffff; letter-spacing: 14px; text-anchor: middle; animation: glitchPulse 1.2s ease-in-out infinite alternate; }
+      .badge-container { animation: floatBadge 1.4s ease-in-out infinite alternate; }
+      .glitch-bar { animation: glitchLineAnim 2s ease-in-out infinite alternate; }
+      .scan-beam { animation: radarSweep 3.5s linear infinite; }
+      .hud-label { font-family: 'Courier New', monospace; font-size: 14px; letter-spacing: 4px; fill: #00f3ff; opacity: 0.7; }
+    </style>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bgGrad)" />
+  <g stroke="rgba(0, 243, 255, 0.08)" stroke-width="1">
+    <line x1="0" y1="270" x2="1920" y2="270" /><line x1="0" y1="540" x2="1920" y2="540" /><line x1="0" y1="810" x2="1920" y2="810" />
+    <line x1="384" y1="0" x2="384" y2="1080" /><line x1="768" y1="0" x2="768" y2="1080" /><line x1="1152" y1="0" x2="1152" y2="1080" /><line x1="1536" y1="0" x2="1536" y2="1080" />
+  </g>
+  <circle cx="960" cy="520" r="320" fill="none" stroke="#00f3ff" stroke-width="2" stroke-dasharray="25 15" opacity="0.3" class="hud-ring-1" />
+  <circle cx="960" cy="520" r="280" fill="none" stroke="#ff0055" stroke-width="2.5" stroke-dasharray="40 30 10 30" opacity="0.4" class="hud-ring-2" />
+  <circle cx="960" cy="520" r="350" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" stroke-dasharray="6 12" />
+  <g stroke="#00f3ff" stroke-width="2" fill="none" opacity="0.6">
+    <path d="M 60 120 L 60 60 L 120 60" /><path d="M 1860 120 L 1860 60 L 1800 60" /><path d="M 60 960 L 60 1020 L 120 1020" /><path d="M 1860 960 L 1860 1020 L 1800 1020" />
+  </g>
+  <text x="80" y="90" class="hud-label">SYS.STATUS // ONLINE</text>
+  <text x="1600" y="90" class="hud-label">RES // 3840x2160 UHD</text>
+  <text x="80" y="1000" class="hud-label">EVENT // BLACKOUT</text>
+  <text x="1680" y="1000" class="hud-label">CODE // CM-2026</text>
+  <rect x="760" y="415" width="400" height="3" fill="#ff0055" opacity="0.8" class="glitch-bar" />
+  <rect x="680" y="555" width="560" height="2" fill="#00f3ff" opacity="0.7" class="glitch-bar" />
+  <text x="960" y="405" font-family="'Courier New', monospace" font-size="24" font-weight="700" fill="#00f3ff" letter-spacing="10" text-anchor="middle">[ LIMITED TIME DEALS EVENT ]</text>
+  <text x="960" y="515" class="main-title">CYBER MONDAY</text>
+  <g class="badge-container">
+    <rect x="700" y="590" width="520" height="84" rx="42" fill="url(#badgeGrad)" filter="url(#neonGlow)" />
+    <text x="960" y="646" font-family="'Arial Black', sans-serif" font-size="34" font-weight="900" fill="#ffffff" letter-spacing="4" text-anchor="middle">SAVE UP TO 80% OFF</text>
+  </g>
+  <rect x="0" y="0" width="1920" height="3" fill="#00f3ff" opacity="0.6" class="scan-beam" />
+</svg>`,
+  },
+  {
     id: 'morphing-waves',
     name: 'Morphing Quantum Waves',
     description: 'Multi-layer undulating Sine waves with dynamic neon gradient shifts and harmonic motion.',

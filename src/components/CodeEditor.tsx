@@ -140,7 +140,10 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
               aria-label="Load SVG Animation Preset"
               onChange={(e) => {
                 const preset = SVG_PRESETS.find((p) => p.id === e.target.value);
-                if (preset) onSelectPreset(preset);
+                if (preset) {
+                  onSelectPreset(preset);
+                  e.target.value = '';
+                }
               }}
               defaultValue=""
               className="bg-zinc-800/80 hover:bg-zinc-800 text-zinc-300 text-xs font-medium rounded-lg px-2.5 py-1 pr-7 border border-zinc-700/60 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer transition-colors"
