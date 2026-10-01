@@ -11,6 +11,7 @@ export interface SvgMetadata {
   animationDurations: number[];
   suggestedDuration?: number;
   elementCount: number;
+  hasForeignObject: boolean;
 }
 
 export interface SvgPreset {

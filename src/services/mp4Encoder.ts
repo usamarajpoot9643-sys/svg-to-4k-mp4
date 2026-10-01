@@ -246,6 +246,11 @@ async function convertSvgWithMediaRecorder(
   canvas: HTMLCanvasElement
 ): Promise<ExportResult> {
   const { svgCode, settings, onProgress, signal } = options;
+  if (/<foreignObject[\s>]/i.test(svgCode)) {
+    throw new Error(
+      'Unsupported element: Your SVG contains <foreignObject> tags (embedded HTML). Browser security policies intentionally taint the canvas and forbid WebCodecs/Canvas pixel extraction. Please replace <foreignObject> with standard vector elements (<text>, <tspan>, or <path>) before exporting.'
+    );
+  }
   const targetWidth = canvas.width;
   const targetHeight = canvas.height;
   const fps = settings.fps;
@@ -383,6 +388,13 @@ export async function convertSvgToMp4(options: ConvertSvgOptions): Promise<Expor
 
   if (signal?.aborted) {
     throw new DOMException('Export cancelled by user', 'AbortError');
+  }
+
+  // Pre-export validation: Detect <foreignObject> to prevent browser canvas tainting
+  if (/<foreignObject[\s>]/i.test(svgCode)) {
+    throw new Error(
+      'Unsupported element: Your SVG contains <foreignObject> tags (embedded HTML). Browser security policies intentionally taint the canvas and forbid WebCodecs/Canvas pixel extraction. Please replace <foreignObject> with standard vector elements (<text>, <tspan>, or <path>) before exporting.'
+    );
   }
 
   // 2. Normalize SVG

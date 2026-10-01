@@ -8,6 +8,7 @@ import {
   Trash2, 
   Wand2, 
   AlertCircle,
+  AlertTriangle,
   FileCheck2,
   Activity,
   Layers
@@ -274,6 +275,16 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             <span className="px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400 text-[11px] font-medium">
               Static Vector Graphic
             </span>
+          )}
+
+          {metadata.hasForeignObject && (
+            <div 
+              className="flex items-center space-x-1 px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold text-[11px]" 
+              title="SVG contains <foreignObject>. Browsers taint the canvas when rendering HTML, preventing 4K WebCodecs export."
+            >
+              <AlertTriangle className="w-3 h-3" />
+              <span>&lt;foreignObject&gt; Detected</span>
+            </div>
           )}
         </div>
 

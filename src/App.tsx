@@ -106,6 +106,13 @@ export const App: React.FC = () => {
       return;
     }
 
+    if (metadata.hasForeignObject) {
+      setErrorMessage(
+        'Unsupported element: Your SVG contains <foreignObject> (HTML inside SVG). Browsers block reading canvas pixels from <foreignObject> for security reasons (canvas taint), which causes WebCodecs video encoding to fail. Please replace <foreignObject> HTML with standard SVG vector elements (<text>, <tspan>, or <path>).'
+      );
+      return;
+    }
+
     setErrorMessage(null);
     setExportResult(null);
 

@@ -14,6 +14,7 @@ export function analyzeSvg(svgString: string): SvgMetadata {
       hasSmilAnimations: false,
       animationDurations: [],
       elementCount: 0,
+      hasForeignObject: false,
     };
   }
 
@@ -35,6 +36,7 @@ export function analyzeSvg(svgString: string): SvgMetadata {
       hasSmilAnimations: false,
       animationDurations: [],
       elementCount: 0,
+      hasForeignObject: false,
     };
   }
 
@@ -49,6 +51,7 @@ export function analyzeSvg(svgString: string): SvgMetadata {
       hasSmilAnimations: false,
       animationDurations: [],
       elementCount: 0,
+      hasForeignObject: false,
     };
   }
 
@@ -116,6 +119,8 @@ export function analyzeSvg(svgString: string): SvgMetadata {
   }
 
   const allElements = svgElement.querySelectorAll('*');
+  const foreignObjectElements = svgElement.querySelectorAll('foreignObject');
+  const hasForeignObject = foreignObjectElements.length > 0;
 
   return {
     isValid: true,
@@ -129,6 +134,7 @@ export function analyzeSvg(svgString: string): SvgMetadata {
     animationDurations,
     suggestedDuration,
     elementCount: allElements.length + 1,
+    hasForeignObject,
   };
 }
 
