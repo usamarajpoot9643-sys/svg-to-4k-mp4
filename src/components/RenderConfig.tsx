@@ -28,20 +28,20 @@ interface RenderConfigProps {
 }
 
 const SOLID_PRESETS = [
-  { name: 'Pure Black', color: '#000000' },
-  { name: 'Slate 950', color: '#020617' },
-  { name: 'Studio White', color: '#ffffff' },
-  { name: 'Dark Indigo', color: '#090d16' },
-  { name: 'Cyber Violet', color: '#130826' },
-  { name: 'Emerald Night', color: '#021814' },
+  { name: 'Pure Obsidian', color: '#000000' },
+  { name: 'Royal Onyx', color: '#07070b' },
+  { name: 'Champagne Noir', color: '#0f0c08' },
+  { name: 'Velvet Burgundy', color: '#18050e' },
+  { name: 'Studio Platinum', color: '#ffffff' },
+  { name: 'Emerald Vault', color: '#021814' },
 ];
 
 const GRADIENT_PRESETS = [
+  { name: 'Imperial Gold', start: '#120d04', end: '#2d2109', angle: 45 },
+  { name: 'Champagne Noir', start: '#08080c', end: '#1a160d', angle: 135 },
   { name: 'Midnight Glow', start: '#090a0f', end: '#181e36', angle: 135 },
-  { name: 'Cyberpunk Neon', start: '#0d0221', end: '#261447', angle: 45 },
   { name: 'Cosmic Violet', start: '#110026', end: '#2d004d', angle: 160 },
-  { name: 'Solar Flare', start: '#1f0000', end: '#4a0e00', angle: 90 },
-  { name: 'Deep Space', start: '#000428', end: '#004e92', angle: 180 },
+  { name: 'Solar Amber', start: '#1f0800', end: '#4a1e00', angle: 90 },
 ];
 
 export const RenderConfig: React.FC<RenderConfigProps> = ({
@@ -83,28 +83,28 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
     const validH = Math.max(128, Math.min(h, 4320));
     if (aspectLocked) {
       const w = Math.round((validH * 16) / 9);
-      onChange({ ...settings, customHeight: validH, customWidth: w });
+      onChange({ ...settings, customWidth: w, customHeight: validH });
     } else {
       onChange({ ...settings, customHeight: validH });
     }
   };
 
   return (
-    <div className="bg-zinc-950 border border-zinc-800/80 rounded-2xl p-5 shadow-xl space-y-6">
-      <div className="flex items-center justify-between border-b border-zinc-800/80 pb-3">
-        <div className="flex items-center space-x-2">
-          <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+    <div className="bg-[#08080e] border border-amber-500/20 rounded-2xl p-5 sm:p-6 shadow-2xl shadow-black/60 hover:border-amber-500/35 transition-all duration-300 space-y-6">
+      <div className="flex items-center justify-between border-b border-amber-500/15 pb-4">
+        <div className="flex items-center space-x-2.5">
+          <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/25">
             <Settings className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-zinc-100">Render & Video Configuration</h3>
-            <p className="text-xs text-zinc-400">Target 4K resolution, frame rate, timeline & canvas backdrop</p>
+            <h3 className="text-sm font-cinzel font-bold text-zinc-100 tracking-wide">Studio Render & Video Configuration</h3>
+            <p className="text-xs text-zinc-400">Target 4K resolution, framerate, timeline & canvas backdrop</p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] font-semibold">
-          <Sparkles className="w-3 h-3" />
-          <span>Lossless Vector Scaling</span>
+        <div className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 text-[11px] font-mono font-semibold tracking-wider uppercase shadow-xs">
+          <Sparkles className="w-3 h-3 text-amber-400" />
+          <span>Lossless 4K Scaling</span>
         </div>
       </div>
 
@@ -115,10 +115,10 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
           <div>
             <div className="flex items-center justify-between mb-2">
               <label className="text-xs font-semibold text-zinc-300 flex items-center space-x-1.5">
-                <Tv className="w-3.5 h-3.5 text-indigo-400" />
+                <Tv className="w-3.5 h-3.5 text-amber-400" />
                 <span>Target Resolution</span>
               </label>
-              <span className="text-[11px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">
+              <span className="text-[11px] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-lg">
                 {settings.customWidth} × {settings.customHeight}
               </span>
             </div>
@@ -132,18 +132,18 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                     key={preset}
                     type="button"
                     onClick={() => handleResolutionPreset(preset)}
-                    className={`relative flex flex-col p-2.5 rounded-xl border text-left transition-all ${
+                    className={`relative flex flex-col p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                       isSelected
-                        ? 'border-indigo-500 bg-indigo-500/10 ring-1 ring-indigo-500'
-                        : 'border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800/80 hover:border-zinc-700'
+                        ? 'border-amber-400 bg-amber-500/10 ring-1 ring-amber-400 text-amber-200 shadow-sm shadow-amber-500/10'
+                        : 'border-zinc-800/80 bg-[#0b0b12] hover:bg-[#10101a] hover:border-amber-500/30 text-zinc-400'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-zinc-100 uppercase">
+                      <span className="text-xs font-bold text-zinc-100 uppercase tracking-wide">
                         {preset === 'custom' ? 'Custom' : RESOLUTION_PRESETS[preset].id}
                       </span>
                       {is4K && (
-                        <span className="px-1.5 py-0.5 rounded text-[9px] font-black tracking-wider bg-gradient-to-r from-amber-500 to-pink-500 text-white shadow-xs">
+                        <span className="px-1.5 py-0.5 rounded text-[9px] font-black tracking-wider bg-gradient-to-r from-amber-400 to-yellow-500 text-zinc-950 shadow-xs">
                           TRUE 4K
                         </span>
                       )}
@@ -160,13 +160,13 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
 
             {/* Custom Dimensions Input if selected */}
             {settings.resolutionPreset === 'custom' && (
-              <div className="mt-3 p-3 bg-zinc-900/80 border border-zinc-800 rounded-xl space-y-2">
+              <div className="mt-3 p-3 bg-zinc-900/90 border border-amber-500/20 rounded-xl space-y-2">
                 <div className="flex items-center justify-between text-xs text-zinc-400 mb-1">
                   <span>Custom Dimensions (px)</span>
                   <button
                     type="button"
                     onClick={() => setAspectLocked(!aspectLocked)}
-                    className="flex items-center space-x-1 text-[11px] text-indigo-400 hover:text-indigo-300 cursor-pointer"
+                    className="flex items-center space-x-1 text-[11px] text-amber-400 hover:text-amber-300 cursor-pointer"
                   >
                     {aspectLocked ? <Lock className="w-3 h-3" /> : <Unlock className="w-3 h-3" />}
                     <span>{aspectLocked ? '16:9 Locked' : 'Unlocked'}</span>
@@ -182,7 +182,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                       max={7680}
                       value={settings.customWidth}
                       onChange={(e) => handleCustomWidth(parseInt(e.target.value) || 1920)}
-                      className="w-full bg-zinc-950 border border-zinc-700/60 rounded-lg px-2.5 py-1.5 text-xs text-zinc-200 font-mono focus:ring-1 focus:ring-indigo-500"
+                      className="w-full bg-zinc-950 border border-zinc-700/60 rounded-lg px-2.5 py-1.5 text-xs text-zinc-200 font-mono focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
                   <div>
@@ -194,7 +194,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                       max={4320}
                       value={settings.customHeight}
                       onChange={(e) => handleCustomHeight(parseInt(e.target.value) || 1080)}
-                      className="w-full bg-zinc-950 border border-zinc-700/60 rounded-lg px-2.5 py-1.5 text-xs text-zinc-200 font-mono focus:ring-1 focus:ring-indigo-500"
+                      className="w-full bg-zinc-950 border border-zinc-700/60 rounded-lg px-2.5 py-1.5 text-xs text-zinc-200 font-mono focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
           {/* Frame Rate (FPS) */}
           <div>
             <label className="text-xs font-semibold text-zinc-300 flex items-center space-x-1.5 mb-2">
-              <Gauge className="w-3.5 h-3.5 text-emerald-400" />
+              <Gauge className="w-3.5 h-3.5 text-amber-400" />
               <span>Frame Rate (FPS)</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -218,13 +218,13 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                     onClick={() => onChange({ ...settings, fps })}
                     className={`flex items-center justify-between p-2.5 rounded-xl border transition-all cursor-pointer ${
                       isSelected
-                        ? 'border-emerald-500 bg-emerald-500/10 ring-1 ring-emerald-500 text-emerald-300'
-                        : 'border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800/80 text-zinc-400'
+                        ? 'border-amber-400 bg-amber-500/10 ring-1 ring-amber-400 text-amber-300 shadow-sm shadow-amber-500/10'
+                        : 'border-zinc-800/80 bg-[#0b0b12] hover:bg-[#10101a] hover:border-amber-500/30 text-zinc-400'
                     }`}
                   >
                     <span className="text-xs font-bold">{fps} FPS</span>
                     <span className="text-[10px] text-zinc-400">
-                      {fps === 60 ? 'Ultra Fluid' : 'Standard Broadcast'}
+                      {fps === 60 ? 'Ultra Fluid 60fps' : 'Standard 30fps'}
                     </span>
                   </button>
                 );
@@ -239,7 +239,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                 <Flame className="w-3.5 h-3.5 text-amber-400" />
                 <span>Video Bitrate Target</span>
               </label>
-              <span className="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">
+              <span className="text-[11px] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-lg">
                 {formatBitrate(settings.bitrate)}
               </span>
             </div>
@@ -253,10 +253,10 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                   key={opt.val}
                   type="button"
                   onClick={() => onChange({ ...settings, bitrate: opt.val })}
-                  className={`p-2 rounded-lg border text-center transition-colors cursor-pointer ${
+                  className={`p-2 rounded-xl border text-center transition-all cursor-pointer ${
                     settings.bitrate === opt.val
-                      ? 'border-amber-500 bg-amber-500/10 text-amber-300 font-semibold'
-                      : 'border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:bg-zinc-800'
+                      ? 'border-amber-400 bg-amber-500/15 text-amber-200 font-bold shadow-xs'
+                      : 'border-zinc-800/80 bg-[#0b0b12] text-zinc-400 hover:bg-[#10101a] hover:border-amber-500/30'
                   }`}
                 >
                   {opt.label}
@@ -272,7 +272,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
           <div>
             <div className="flex items-center justify-between mb-2">
               <label className="text-xs font-semibold text-zinc-300 flex items-center space-x-1.5">
-                <Clock className="w-3.5 h-3.5 text-purple-400" />
+                <Clock className="w-3.5 h-3.5 text-amber-400" />
                 <span>Duration ({formatDuration(settings.duration)})</span>
               </label>
               <div className="flex items-center space-x-1">
@@ -280,13 +280,13 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                   <button
                     type="button"
                     onClick={() => onChange({ ...settings, duration: suggestedDuration })}
-                    className="text-[10px] bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 px-2 py-0.5 rounded border border-purple-500/30 font-medium cursor-pointer"
+                    className="text-[10px] bg-amber-500/15 text-amber-300 hover:bg-amber-500/25 px-2.5 py-0.5 rounded-lg border border-amber-500/30 font-medium cursor-pointer transition-colors"
                     title="Matched loop duration from SVG animation keyframes"
                   >
                     Auto-Fit Loop ({suggestedDuration}s)
                   </button>
                 )}
-                <span className="text-[11px] font-mono text-zinc-300 bg-zinc-800 px-2 py-0.5 rounded">
+                <span className="text-[11px] font-mono text-zinc-300 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded-lg">
                   {Math.round(settings.duration * settings.fps)} frames
                 </span>
               </div>
@@ -300,20 +300,20 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
               step={1}
               value={settings.duration}
               onChange={(e) => onChange({ ...settings, duration: parseInt(e.target.value) || 5 })}
-              className="w-full accent-purple-500 h-1.5 bg-zinc-800 rounded-lg cursor-pointer"
+              className="w-full accent-amber-400 h-1.5 bg-zinc-900 rounded-lg cursor-pointer"
             />
 
             {/* Quick chips */}
-            <div className="flex items-center justify-between mt-2 gap-1.5">
+            <div className="flex items-center justify-between mt-2.5 gap-1.5">
               {[2, 3, 5, 8, 10, 15, 30].map((sec) => (
                 <button
                   key={sec}
                   type="button"
                   onClick={() => onChange({ ...settings, duration: sec })}
-                  className={`flex-1 py-1 text-[11px] rounded-md border text-center transition-colors cursor-pointer ${
+                  className={`flex-1 py-1 text-[11px] rounded-lg border text-center transition-all cursor-pointer ${
                     settings.duration === sec
-                      ? 'border-purple-500 bg-purple-500/20 text-purple-200 font-bold'
-                      : 'border-zinc-800/80 bg-zinc-900 text-zinc-400 hover:bg-zinc-800'
+                      ? 'border-amber-400 bg-amber-500/20 text-amber-200 font-bold shadow-xs'
+                      : 'border-zinc-800/80 bg-[#0b0b12] text-zinc-400 hover:bg-[#10101a] hover:border-amber-500/30'
                   }`}
                 >
                   {sec}s
@@ -332,12 +332,12 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
           {/* Background Configuration */}
           <div>
             <label className="text-xs font-semibold text-zinc-300 flex items-center space-x-1.5 mb-2">
-              <Palette className="w-3.5 h-3.5 text-pink-400" />
+              <Palette className="w-3.5 h-3.5 text-amber-400" />
               <span>Canvas Background</span>
             </label>
 
             {/* Background Type Tabs */}
-            <div className="grid grid-cols-3 gap-1.5 bg-zinc-900/80 p-1 rounded-xl border border-zinc-800 text-xs mb-3">
+            <div className="grid grid-cols-3 gap-1.5 bg-[#0b0b12] p-1 rounded-xl border border-amber-500/20 text-xs mb-3">
               {(['solid', 'gradient', 'transparent'] as BackgroundType[]).map((type) => (
                 <button
                   key={type}
@@ -348,10 +348,10 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                       background: { ...settings.background, type },
                     })
                   }
-                  className={`py-1.5 rounded-lg capitalize font-medium transition-colors cursor-pointer ${
+                  className={`py-1.5 rounded-lg capitalize font-medium transition-all cursor-pointer ${
                     settings.background.type === type
-                      ? 'bg-zinc-800 text-white shadow-xs'
-                      : 'text-zinc-400 hover:text-zinc-200'
+                      ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 font-bold shadow-xs'
+                      : 'text-zinc-400 hover:text-amber-200'
                   }`}
                 >
                   {type}
@@ -372,7 +372,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                         background: { ...settings.background, color: e.target.value },
                       })
                     }
-                    className="w-9 h-9 rounded-lg bg-zinc-900 border border-zinc-700 cursor-pointer p-0.5"
+                    className="w-9 h-9 rounded-xl bg-zinc-900 border border-amber-500/30 cursor-pointer p-0.5"
                   />
                   <input
                     type="text"
@@ -383,7 +383,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                         background: { ...settings.background, color: e.target.value },
                       })
                     }
-                    className="flex-1 bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-1.5 text-xs font-mono text-zinc-200 uppercase focus:ring-1 focus:ring-indigo-500"
+                    className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-1.5 text-xs font-mono text-zinc-200 uppercase focus:ring-1 focus:ring-amber-400"
                     placeholder="#000000"
                   />
                 </div>
@@ -402,10 +402,10 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                       }
                       title={swatch.name}
                       style={{ backgroundColor: swatch.color }}
-                      className={`h-7 rounded-lg border transition-transform cursor-pointer ${
+                      className={`h-7 rounded-xl border transition-all cursor-pointer ${
                         settings.background.color.toLowerCase() === swatch.color.toLowerCase()
-                          ? 'border-indigo-400 scale-105 shadow-md shadow-indigo-500/20'
-                          : 'border-zinc-700/60 hover:scale-105'
+                          ? 'border-amber-400 scale-105 shadow-md shadow-amber-500/30'
+                          : 'border-zinc-700/60 hover:scale-105 hover:border-amber-500/40'
                       }`}
                     />
                   ))}
@@ -430,7 +430,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                           },
                         })
                       }
-                      className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-700 cursor-pointer p-0.5"
+                      className="w-8 h-8 rounded-lg bg-zinc-900 border border-amber-500/30 cursor-pointer p-0.5"
                     />
                     <span className="text-[11px] font-mono text-zinc-400 uppercase">
                       {settings.background.gradient.startColor}
@@ -450,7 +450,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                           },
                         })
                       }
-                      className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-700 cursor-pointer p-0.5"
+                      className="w-8 h-8 rounded-lg bg-zinc-900 border border-amber-500/30 cursor-pointer p-0.5"
                     />
                     <span className="text-[11px] font-mono text-zinc-400 uppercase">
                       {settings.background.gradient.endColor}
@@ -462,7 +462,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                 <div>
                   <div className="flex justify-between text-[11px] text-zinc-400 mb-1">
                     <span>Gradient Angle</span>
-                    <span className="font-mono">{settings.background.gradient.angle}°</span>
+                    <span className="font-mono text-amber-300">{settings.background.gradient.angle}°</span>
                   </div>
                   <input
                     type="range"
@@ -482,7 +482,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                         },
                       })
                     }
-                    className="w-full accent-indigo-500 h-1.5 bg-zinc-800 rounded-lg cursor-pointer"
+                    className="w-full accent-amber-400 h-1.5 bg-zinc-900 rounded-lg cursor-pointer"
                   />
                 </div>
 
@@ -510,7 +510,7 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
                       style={{
                         backgroundImage: `linear-gradient(${p.angle}deg, ${p.start}, ${p.end})`,
                       }}
-                      className="h-7 rounded-lg border border-zinc-700/60 hover:scale-105 transition-transform cursor-pointer"
+                      className="h-7 rounded-xl border border-zinc-700/60 hover:scale-105 hover:border-amber-400 transition-all cursor-pointer"
                     />
                   ))}
                 </div>
@@ -519,9 +519,9 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
 
             {/* Transparent Info */}
             {settings.background.type === 'transparent' && (
-              <div className="p-3 bg-zinc-900/60 border border-zinc-800 rounded-xl text-xs text-zinc-400 space-y-1">
-                <p className="font-medium text-zinc-200 flex items-center space-x-1">
-                  <Info className="w-3.5 h-3.5 text-indigo-400" />
+              <div className="p-3.5 bg-zinc-900/80 border border-amber-500/20 rounded-xl text-xs text-zinc-400 space-y-1">
+                <p className="font-medium text-amber-300 flex items-center space-x-1.5">
+                  <Info className="w-3.5 h-3.5 text-amber-400" />
                   <span>MP4 Video Alpha Notice</span>
                 </p>
                 <p className="text-[11px] leading-relaxed text-zinc-400">
@@ -535,3 +535,5 @@ export const RenderConfig: React.FC<RenderConfigProps> = ({
     </div>
   );
 };
+
+export default RenderConfig;

@@ -82,16 +82,16 @@ export const SvgPreview: React.FC<SvgPreviewProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full bg-zinc-950 border border-zinc-800/80 rounded-2xl overflow-hidden shadow-xl">
+    <div className="flex flex-col h-full bg-[#08080e] border border-amber-500/20 rounded-2xl overflow-hidden shadow-2xl shadow-black/60 hover:border-amber-500/35 transition-all duration-300">
       {/* Top Toolbar */}
-      <div className="px-4 py-3 bg-zinc-900/70 border-b border-zinc-800/80 flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center space-x-2">
-          <div className="flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-zinc-800 text-zinc-200 text-xs font-semibold">
-            <Eye className="w-3.5 h-3.5 text-purple-400" />
-            <span>Interactive Vector Preview</span>
+      <div className="px-4 py-3 bg-[#0d0d15]/90 border-b border-amber-500/15 flex flex-wrap items-center justify-between gap-2.5">
+        <div className="flex items-center space-x-2.5">
+          <div className="flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs font-mono font-bold tracking-wider uppercase">
+            <Eye className="w-3.5 h-3.5 text-amber-400" />
+            <span>Interactive Canvas Preview</span>
           </div>
 
-          <span className="text-[11px] font-mono text-zinc-400 bg-zinc-800/50 px-2 py-0.5 rounded border border-zinc-700/40">
+          <span className="text-[11px] font-mono text-amber-400/80 bg-zinc-900/90 px-2 py-0.5 rounded border border-amber-500/20">
             {Math.round(zoom * 100)}%
           </span>
         </div>
@@ -99,11 +99,11 @@ export const SvgPreview: React.FC<SvgPreviewProps> = ({
         {/* Viewport & Background Controls */}
         <div className="flex items-center space-x-1.5 sm:space-x-2 text-xs">
           {/* Background switcher */}
-          <div className="flex items-center bg-zinc-800/80 p-0.5 rounded-lg border border-zinc-700/50 text-[11px]">
+          <div className="flex items-center bg-zinc-900/90 p-0.5 rounded-xl border border-amber-500/20 text-[11px]">
             <button
               onClick={() => setBgMode('match')}
-              className={`px-2 py-0.5 rounded transition-colors ${
-                bgMode === 'match' ? 'bg-indigo-600 text-white font-medium shadow-xs' : 'text-zinc-400 hover:text-zinc-200'
+              className={`px-2.5 py-1 rounded-lg transition-all ${
+                bgMode === 'match' ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 font-bold shadow-xs' : 'text-zinc-400 hover:text-amber-200'
               }`}
               title="Preview with exact video background"
             >
@@ -111,8 +111,8 @@ export const SvgPreview: React.FC<SvgPreviewProps> = ({
             </button>
             <button
               onClick={() => setBgMode('checker-dark')}
-              className={`px-2 py-0.5 rounded transition-colors ${
-                bgMode === 'checker-dark' ? 'bg-indigo-600 text-white font-medium shadow-xs' : 'text-zinc-400 hover:text-zinc-200'
+              className={`px-2.5 py-1 rounded-lg transition-all ${
+                bgMode === 'checker-dark' ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 font-bold shadow-xs' : 'text-zinc-400 hover:text-amber-200'
               }`}
               title="Dark transparency checkerboard"
             >
@@ -120,8 +120,8 @@ export const SvgPreview: React.FC<SvgPreviewProps> = ({
             </button>
             <button
               onClick={() => setBgMode('checker-light')}
-              className={`px-2 py-0.5 rounded transition-colors ${
-                bgMode === 'checker-light' ? 'bg-indigo-600 text-white font-medium shadow-xs' : 'text-zinc-400 hover:text-zinc-200'
+              className={`px-2.5 py-1 rounded-lg transition-all ${
+                bgMode === 'checker-light' ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 font-bold shadow-xs' : 'text-zinc-400 hover:text-amber-200'
               }`}
               title="Light transparency checkerboard"
             >
@@ -130,24 +130,24 @@ export const SvgPreview: React.FC<SvgPreviewProps> = ({
           </div>
 
           {/* Zoom & Pan Tools */}
-          <div className="flex items-center space-x-1 bg-zinc-800/60 p-0.5 rounded-lg border border-zinc-700/50">
+          <div className="flex items-center space-x-1 bg-zinc-900/90 p-0.5 rounded-xl border border-amber-500/20">
             <button
               onClick={handleZoomIn}
-              className="p-1 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-700/60 rounded"
+              className="p-1 text-zinc-400 hover:text-amber-200 hover:bg-zinc-800 rounded-lg transition-colors"
               title="Zoom In"
             >
               <ZoomIn className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={handleZoomOut}
-              className="p-1 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-700/60 rounded"
+              className="p-1 text-zinc-400 hover:text-amber-200 hover:bg-zinc-800 rounded-lg transition-colors"
               title="Zoom Out"
             >
               <ZoomOut className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={handleReset}
-              className="p-1 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-700/60 rounded"
+              className="p-1 text-zinc-400 hover:text-amber-200 hover:bg-zinc-800 rounded-lg transition-colors"
               title="Reset View"
             >
               <RotateCcw className="w-3.5 h-3.5" />

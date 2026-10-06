@@ -125,12 +125,12 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full bg-zinc-950 border border-zinc-800/80 rounded-2xl overflow-hidden shadow-xl">
+    <div className="flex flex-col h-full bg-[#08080e] border border-amber-500/20 rounded-2xl overflow-hidden shadow-2xl shadow-black/60 hover:border-amber-500/35 transition-all duration-300">
       {/* Top Toolbar */}
-      <div className="px-4 py-3 bg-zinc-900/70 border-b border-zinc-800/80 flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center space-x-2">
-          <div className="flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-zinc-800 text-zinc-200 text-xs font-semibold">
-            <Code2 className="w-3.5 h-3.5 text-indigo-400" />
+      <div className="px-4 py-3 bg-[#0d0d15]/90 border-b border-amber-500/15 flex flex-wrap items-center justify-between gap-2.5">
+        <div className="flex items-center space-x-2.5">
+          <div className="flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs font-mono font-bold tracking-wider uppercase">
+            <Code2 className="w-3.5 h-3.5 text-amber-400" />
             <span>SVG Source</span>
           </div>
 
@@ -146,7 +146,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
                 }
               }}
               defaultValue=""
-              className="bg-zinc-800/80 hover:bg-zinc-800 text-zinc-300 text-xs font-medium rounded-lg px-2.5 py-1 pr-7 border border-zinc-700/60 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer transition-colors"
+              className="bg-zinc-900/90 hover:bg-zinc-900 text-amber-200 text-xs font-medium rounded-xl px-3 py-1.5 pr-8 border border-amber-500/30 focus:outline-none focus:ring-1 focus:ring-amber-400 cursor-pointer transition-all shadow-sm"
             >
               <option value="" disabled>Load Preset Example...</option>
               {SVG_PRESETS.map((preset) => (
@@ -155,12 +155,12 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
                 </option>
               ))}
             </select>
-            <Sparkles className="w-3 h-3 text-purple-400 absolute right-2.5 top-2 pointer-events-none" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-400 absolute right-2.5 top-2 pointer-events-none" />
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex items-center space-x-1 sm:space-x-2">
+        <div className="flex items-center space-x-1.5 sm:space-x-2">
           {/* File Upload Button */}
           <input
             ref={fileInputRef}
@@ -174,9 +174,9 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           <button
             onClick={() => fileInputRef.current?.click()}
             title="Upload .svg file"
-            className="flex items-center space-x-1 px-2.5 py-1 text-xs font-medium text-zinc-300 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-colors"
+            className="flex items-center space-x-1 px-3 py-1.5 text-xs font-medium text-zinc-300 bg-zinc-900/80 hover:bg-zinc-900 hover:text-amber-200 border border-amber-500/20 rounded-xl transition-all shadow-sm"
           >
-            <Upload className="w-3 h-3 text-zinc-400" />
+            <Upload className="w-3 h-3 text-amber-400/80" />
             <span className="hidden sm:inline">Upload</span>
           </button>
 
@@ -184,9 +184,9 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           <button
             onClick={handleFormat}
             title="Format XML Code"
-            className="flex items-center space-x-1 px-2 py-1 text-xs font-medium text-zinc-300 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-colors"
+            className="flex items-center space-x-1 px-2.5 py-1.5 text-xs font-medium text-zinc-300 bg-zinc-900/80 hover:bg-zinc-900 hover:text-amber-200 border border-amber-500/20 rounded-xl transition-all shadow-sm"
           >
-            <Wand2 className="w-3 h-3 text-zinc-400" />
+            <Wand2 className="w-3 h-3 text-amber-400/80" />
             <span className="hidden sm:inline">Format</span>
           </button>
 
@@ -194,7 +194,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           <button
             onClick={handleCopy}
             title="Copy SVG Code"
-            className="p-1.5 text-zinc-400 hover:text-zinc-200 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-colors"
+            className="p-1.5 text-zinc-400 hover:text-amber-200 bg-zinc-900/80 hover:bg-zinc-900 border border-amber-500/20 rounded-xl transition-all shadow-sm"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
           </button>
@@ -203,7 +203,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           <button
             onClick={() => onChange('')}
             title="Clear Editor"
-            className="p-1.5 text-zinc-400 hover:text-red-400 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-colors"
+            className="p-1.5 text-zinc-400 hover:text-rose-400 bg-zinc-900/80 hover:bg-zinc-900 border border-amber-500/20 rounded-xl transition-all shadow-sm"
           >
             <Trash2 className="w-3.5 h-3.5" />
           </button>
@@ -213,7 +213,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       {/* Editor Body with Line Numbers */}
       <div 
         className={`relative flex-1 min-h-[360px] max-h-[460px] flex overflow-hidden ${
-          dragActive ? 'ring-2 ring-indigo-500 bg-indigo-500/5' : ''
+          dragActive ? 'ring-2 ring-amber-400 bg-amber-500/5' : ''
         }`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -221,7 +221,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         onDrop={handleDrop}
       >
         {/* Line Numbers Sidebar */}
-        <div className="w-12 bg-zinc-950/90 py-3 pr-3 text-right font-mono text-[11px] text-zinc-600 select-none border-r border-zinc-900 overflow-hidden">
+        <div className="w-12 bg-[#05050a] py-3 pr-3 text-right font-mono text-[11px] text-amber-500/30 select-none border-r border-amber-500/10 overflow-hidden">
           {lineNumbers.map((num) => (
             <div key={num} className="leading-5 h-5">{num}</div>
           ))}
@@ -234,20 +234,20 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           onChange={(e) => onChange(e.target.value)}
           placeholder="Paste raw SVG code here (<svg ...>...</svg>) or drag & drop an .svg file..."
           spellCheck={false}
-          className="flex-1 w-full bg-zinc-950 p-3 font-mono text-xs text-zinc-200 leading-5 resize-none focus:outline-none focus:ring-0 selection:bg-indigo-600/30 selection:text-white overflow-y-auto whitespace-pre font-light"
+          className="flex-1 w-full bg-[#07070c] p-3 font-mono text-xs text-zinc-200 leading-5 resize-none focus:outline-none focus:ring-0 selection:bg-amber-500/30 selection:text-amber-200 overflow-y-auto whitespace-pre font-light"
         />
 
         {/* Drag & drop overlay cue */}
         {dragActive && (
-          <div className="absolute inset-0 bg-indigo-950/80 backdrop-blur-xs flex flex-col items-center justify-center border-2 border-dashed border-indigo-400 rounded-xl z-20 pointer-events-none">
-            <Upload className="w-10 h-10 text-indigo-300 animate-bounce mb-2" />
+          <div className="absolute inset-0 bg-[#07070c]/90 backdrop-blur-xs flex flex-col items-center justify-center border-2 border-dashed border-amber-400 rounded-xl z-20 pointer-events-none">
+            <Upload className="w-10 h-10 text-amber-300 animate-bounce mb-2" />
             <p className="text-sm font-semibold text-white">Drop .svg file to import code</p>
           </div>
         )}
       </div>
 
       {/* Validation & Metadata Status Bar */}
-      <div className="px-4 py-2 bg-zinc-900/90 border-t border-zinc-800/80 flex flex-wrap items-center justify-between text-xs gap-2">
+      <div className="px-4 py-2.5 bg-[#0d0d15]/95 border-t border-amber-500/15 flex flex-wrap items-center justify-between text-xs gap-2">
         <div className="flex items-center space-x-2">
           {metadata.isValid ? (
             <div className="flex items-center space-x-1.5 text-emerald-400 font-medium">
@@ -262,8 +262,8 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           )}
 
           {metadata.isAnimated && (
-            <div className="flex items-center space-x-1 px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold text-[11px]">
-              <Activity className="w-3 h-3 animate-pulse" />
+            <div className="flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold text-[11px] shadow-xs">
+              <Activity className="w-3 h-3 text-amber-400 animate-pulse" />
               <span>
                 {metadata.hasCssAnimations && metadata.hasSmilAnimations
                   ? 'CSS & SMIL Animated'
@@ -275,7 +275,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           )}
 
           {!metadata.isAnimated && metadata.isValid && (
-            <span className="px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400 text-[11px] font-medium">
+            <span className="px-2.5 py-0.5 rounded-full bg-zinc-900 border border-amber-500/20 text-zinc-300 text-[11px] font-medium">
               Static Vector Graphic
             </span>
           )}

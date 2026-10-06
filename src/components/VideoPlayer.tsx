@@ -97,17 +97,17 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
   const effectiveBitrate = Math.round((result.fileSizeBytes * 8) / (result.duration || 1));
 
   return (
-    <div className="bg-zinc-950 border border-zinc-800/80 rounded-2xl overflow-hidden shadow-2xl p-5 sm:p-6 space-y-6">
+    <div className="bg-[#08080e]/95 backdrop-blur-md border border-amber-500/20 rounded-2xl overflow-hidden shadow-2xl p-5 sm:p-6 space-y-6 relative">
       {/* Top Banner */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800/80 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-amber-500/15 pb-4">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+          <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center">
+            <CheckCircle2 className="w-5 h-5 text-amber-400" />
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h3 className="text-base font-bold text-zinc-100">4K MP4 Render Ready</h3>
-              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">
+              <h3 className="text-base font-bold text-amber-100 font-cinzel tracking-wide">4K MP4 Render Ready</h3>
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-[10px] font-mono font-bold tracking-wider">
                 100% SUCCESS
               </span>
             </div>
@@ -121,22 +121,22 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
         <div className="flex items-center space-x-2">
           <button
             onClick={onReset}
-            className="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700/60 text-xs font-semibold transition-colors cursor-pointer"
+            className="px-3.5 py-2 rounded-xl bg-[#0c0c14] hover:bg-[#141420] text-zinc-300 hover:text-amber-200 border border-amber-500/20 text-xs font-semibold transition-all cursor-pointer"
           >
             Render Another
           </button>
           <button
             onClick={handleDownload}
-            className="flex items-center space-x-2 px-5 py-2 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-bold text-xs shadow-lg shadow-purple-500/25 transition-all transform active:scale-95 cursor-pointer"
+            className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:via-yellow-200 hover:to-amber-400 text-zinc-950 font-black text-xs tracking-wider shadow-lg shadow-amber-500/20 transition-all transform active:scale-95 cursor-pointer uppercase"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-4 h-4 text-zinc-950" />
             <span>Download MP4</span>
           </button>
         </div>
       </div>
 
       {/* Video Preview Canvas */}
-      <div className="relative rounded-2xl overflow-hidden bg-black border border-zinc-800 group shadow-inner">
+      <div className="relative rounded-2xl overflow-hidden bg-black border border-amber-500/25 group shadow-inner">
         <video
           ref={videoRef}
           src={result.url}
@@ -149,7 +149,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
         />
 
         {/* Video Overlaid Controls */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 flex flex-col space-y-2 opacity-90 group-hover:opacity-100 transition-opacity">
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-4 flex flex-col space-y-2 opacity-90 group-hover:opacity-100 transition-opacity">
           {/* Progress scrubber */}
           <input
             type="range"
@@ -158,14 +158,14 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
             step={0.01}
             value={currentTime}
             onChange={handleSeek}
-            className="w-full h-1.5 bg-zinc-700/60 rounded-lg cursor-pointer accent-indigo-500"
+            className="w-full h-1.5 bg-zinc-800 rounded-lg cursor-pointer accent-amber-400"
           />
 
           <div className="flex items-center justify-between text-xs text-zinc-300">
             <div className="flex items-center space-x-3">
               <button
                 onClick={togglePlay}
-                className="p-1 text-white hover:text-indigo-400 transition-colors cursor-pointer"
+                className="p-1 text-white hover:text-amber-300 transition-colors cursor-pointer"
                 title={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -173,9 +173,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
 
               <button
                 onClick={() => setIsLooping(!isLooping)}
-                className={`flex items-center space-x-1 px-2 py-0.5 rounded text-[11px] font-medium border transition-colors cursor-pointer ${
+                className={`flex items-center space-x-1 px-2.5 py-0.5 rounded text-[11px] font-medium border transition-colors cursor-pointer ${
                   isLooping
-                    ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30'
+                    ? 'bg-amber-500/15 text-amber-300 border-amber-500/30'
                     : 'bg-zinc-800/60 text-zinc-400 border-zinc-700/40'
                 }`}
                 title="Toggle loop playback"
@@ -190,7 +190,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
             </div>
 
             <div className="flex items-center space-x-2">
-              <span className="font-mono text-[11px] bg-zinc-900/80 px-2 py-0.5 rounded border border-zinc-800 text-zinc-300">
+              <span className="font-mono text-[11px] bg-black/80 px-2.5 py-0.5 rounded border border-amber-500/20 text-amber-200">
                 {result.width} × {result.height} @ {result.fps} FPS
               </span>
               <button
@@ -207,12 +207,12 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
 
       {/* Video Statistics Card */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="bg-zinc-900/70 border border-zinc-800/80 rounded-xl p-3 flex items-center space-x-3">
-          <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+        <div className="bg-[#08080e]/90 border border-amber-500/15 rounded-xl p-3 flex items-center space-x-3">
+          <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/25">
             <HardDrive className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[10px] text-zinc-500 uppercase tracking-wider block font-semibold">
+            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block font-semibold font-cinzel">
               File Size
             </span>
             <span className="text-sm font-bold font-mono text-zinc-100">
@@ -221,12 +221,12 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
           </div>
         </div>
 
-        <div className="bg-zinc-900/70 border border-zinc-800/80 rounded-xl p-3 flex items-center space-x-3">
-          <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
+        <div className="bg-[#08080e]/90 border border-amber-500/15 rounded-xl p-3 flex items-center space-x-3">
+          <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/25">
             <Tv className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[10px] text-zinc-500 uppercase tracking-wider block font-semibold">
+            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block font-semibold font-cinzel">
               Resolution
             </span>
             <span className="text-sm font-bold font-mono text-zinc-100">
@@ -235,12 +235,12 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
           </div>
         </div>
 
-        <div className="bg-zinc-900/70 border border-zinc-800/80 rounded-xl p-3 flex items-center space-x-3">
-          <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        <div className="bg-[#08080e]/90 border border-amber-500/15 rounded-xl p-3 flex items-center space-x-3">
+          <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/25">
             <Gauge className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[10px] text-zinc-500 uppercase tracking-wider block font-semibold">
+            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block font-semibold font-cinzel">
               FPS & Codec
             </span>
             <span className="text-sm font-bold font-mono text-zinc-100">
@@ -249,12 +249,12 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
           </div>
         </div>
 
-        <div className="bg-zinc-900/70 border border-zinc-800/80 rounded-xl p-3 flex items-center space-x-3">
-          <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+        <div className="bg-[#08080e]/90 border border-amber-500/15 rounded-xl p-3 flex items-center space-x-3">
+          <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/25">
             <Flame className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[10px] text-zinc-500 uppercase tracking-wider block font-semibold">
+            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block font-semibold font-cinzel">
               Bitrate
             </span>
             <span className="text-sm font-bold font-mono text-zinc-100">
@@ -265,17 +265,17 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ result, onReset }) => 
       </div>
 
       {/* Direct Download Callout */}
-      <div className="bg-gradient-to-r from-indigo-950/40 via-purple-950/40 to-pink-950/40 border border-indigo-500/20 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-gradient-to-r from-[#0c0c16] via-[#10101c] to-[#0c0c16] border border-amber-500/20 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center space-x-2">
-          <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
+          <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
           <p className="text-xs text-zinc-300">
-            Generated file: <code className="text-indigo-300 font-mono text-[11px] bg-black/40 px-2 py-0.5 rounded">{result.filename}</code>
+            Generated file: <code className="text-amber-300 font-mono text-[11px] bg-black/60 px-2.5 py-1 rounded border border-amber-500/20">{result.filename}</code>
           </p>
         </div>
 
         <button
           onClick={handleDownload}
-          className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 font-bold text-xs shadow-md transition-all active:scale-95 cursor-pointer"
+          className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:via-yellow-200 hover:to-amber-400 text-zinc-950 font-black text-xs tracking-wider shadow-lg shadow-amber-500/20 transition-all transform active:scale-95 cursor-pointer uppercase"
         >
           <Download className="w-4 h-4 text-zinc-950" />
           <span>Save Video</span>

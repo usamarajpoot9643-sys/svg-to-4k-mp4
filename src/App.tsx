@@ -147,12 +147,15 @@ export const App: React.FC = () => {
   }, [settings.bitrate, settings.duration]);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col selection:bg-indigo-600/30 selection:text-white">
+    <div className="min-h-screen bg-[#050508] text-zinc-100 flex flex-col selection:bg-amber-500/30 selection:text-amber-100 relative overflow-x-hidden">
+      {/* Ambient luxury lighting */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[450px] bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.08),transparent_70%)] pointer-events-none -z-0" />
+
       {/* Top Navbar */}
       <Header />
 
       {/* Main Workspace Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 relative z-10">
         {/* Error Banners */}
         {errorMessage && (
           <ErrorAlert
@@ -203,37 +206,40 @@ export const App: React.FC = () => {
         />
 
         {/* Conversion Action Bar */}
-        <div className="bg-gradient-to-r from-zinc-900 via-zinc-900/90 to-zinc-900 border border-zinc-800 rounded-2xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4 shadow-xl">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 shrink-0">
-              <Film className="w-6 h-6 text-white" />
+        <div className="relative bg-[#08080e]/95 backdrop-blur-md border border-amber-500/20 rounded-2xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4 shadow-2xl shadow-black/80 overflow-hidden">
+          {/* Subtle gold decorative shimmer */}
+          <div className="absolute -top-12 -right-12 w-48 h-48 bg-amber-500/5 rounded-full blur-2xl pointer-events-none" />
+
+          <div className="flex items-center space-x-4 relative z-10">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400/20 via-yellow-500/10 to-transparent border border-amber-500/40 flex items-center justify-center shadow-lg shadow-amber-500/10 shrink-0">
+              <Film className="w-6 h-6 text-amber-300" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="text-sm font-extrabold text-zinc-100">
+                <span className="text-sm font-bold text-amber-100 tracking-wide font-cinzel">
                   {settings.customWidth} × {settings.customHeight} @ {settings.fps} FPS
                 </span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/10 text-amber-300 border border-amber-500/30">
                   {settings.duration}s ({Math.round(settings.duration * settings.fps)} frames)
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5 flex items-center space-x-2">
-                <span>Estimated Size: ~{formatBytes(estimatedSizeBytes)}</span>
-                <span>•</span>
-                <span>Target: {formatBitrate(settings.bitrate)}</span>
-                <span>•</span>
-                <span>{metadata.isAnimated ? 'Animated Vector' : 'Static Loop'}</span>
+              <p className="text-xs text-zinc-400 mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 font-mono text-[11px]">
+                <span className="text-zinc-300">Est. Size: ~{formatBytes(estimatedSizeBytes)}</span>
+                <span className="text-amber-500/40">•</span>
+                <span className="text-zinc-300">Target: {formatBitrate(settings.bitrate)}</span>
+                <span className="text-amber-500/40">•</span>
+                <span className="text-amber-400/80">{metadata.isAnimated ? 'Animated Vector' : 'Static Loop'}</span>
               </p>
             </div>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 relative z-10">
             <button
               onClick={handleStartConversion}
               disabled={!metadata.isValid || progress.stage === 'rasterizing' || progress.stage === 'encoding'}
-              className="flex items-center space-x-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-extrabold text-sm shadow-xl shadow-purple-500/25 transition-all transform active:scale-95 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+              className="flex items-center space-x-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:via-yellow-200 hover:to-amber-400 text-zinc-950 font-black text-xs tracking-wider shadow-xl shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 disabled:opacity-40 disabled:pointer-events-none cursor-pointer uppercase"
             >
-              <Play className="w-4 h-4 fill-white" />
+              <Play className="w-4 h-4 fill-zinc-950 text-zinc-950" />
               <span>Synthesize 4K MP4 Video</span>
             </button>
           </div>
@@ -241,36 +247,36 @@ export const App: React.FC = () => {
 
         {/* Technical Architecture Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-          <div className="p-4 rounded-xl bg-zinc-950/60 border border-zinc-800/60 flex items-start space-x-3">
-            <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shrink-0">
+          <div className="p-4 rounded-xl bg-[#08080e]/80 border border-amber-500/15 hover:border-amber-500/30 transition-colors flex items-start space-x-3">
+            <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/25 shrink-0">
               <Cpu className="w-4 h-4" />
             </div>
             <div>
-              <h5 className="text-xs font-bold text-zinc-200">Hardware WebCodecs Acceleration</h5>
+              <h5 className="text-xs font-bold text-amber-100 font-cinzel tracking-wide">Hardware WebCodecs Acceleration</h5>
               <p className="text-[11px] text-zinc-400 mt-1 leading-relaxed">
                 Encodes frames using native GPU hardware encoders (NVENC, QuickSync, Apple VT) with zero server latency.
               </p>
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-zinc-950/60 border border-zinc-800/60 flex items-start space-x-3">
-            <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 shrink-0">
+          <div className="p-4 rounded-xl bg-[#08080e]/80 border border-amber-500/15 hover:border-amber-500/30 transition-colors flex items-start space-x-3">
+            <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/25 shrink-0">
               <Layers className="w-4 h-4" />
             </div>
             <div>
-              <h5 className="text-xs font-bold text-zinc-200">Zero-Leak Buffer Disposal</h5>
+              <h5 className="text-xs font-bold text-amber-100 font-cinzel tracking-wide">Zero-Leak Buffer Disposal</h5>
               <p className="text-[11px] text-zinc-400 mt-1 leading-relaxed">
-                4K frames (33MB each) are immediately disposed via <code className="text-purple-300 font-mono text-[10px]">VideoFrame.close()</code> to ensure rock-solid browser stability.
+                4K frames (33MB each) are immediately disposed via <code className="text-amber-300 font-mono text-[10px]">VideoFrame.close()</code> to ensure rock-solid browser stability.
               </p>
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-zinc-950/60 border border-zinc-800/60 flex items-start space-x-3">
-            <div className="p-2 rounded-lg bg-pink-500/10 text-pink-400 border border-pink-500/20 shrink-0">
+          <div className="p-4 rounded-xl bg-[#08080e]/80 border border-amber-500/15 hover:border-amber-500/30 transition-colors flex items-start space-x-3">
+            <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/25 shrink-0">
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h5 className="text-xs font-bold text-zinc-200">Dual SMIL & CSS Time Stepping</h5>
+              <h5 className="text-xs font-bold text-amber-100 font-cinzel tracking-wide">Dual SMIL & CSS Time Stepping</h5>
               <p className="text-[11px] text-zinc-400 mt-1 leading-relaxed">
                 Frame-by-frame negative delay injection guarantees zero dropped frames and jitter-free 60 FPS motion rendering.
               </p>
